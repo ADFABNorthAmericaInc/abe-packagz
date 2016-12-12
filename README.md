@@ -24,6 +24,6 @@ Every time you publish a content, abe-packagz will create a tar.gz package in th
 
 You can choose between 1 or 2 packages :
 
-- 1 package.tar.gz (Post + Assets) - mergeAssets === true
-- 2 packages.tar.gz (1 for Post + 1 for assets) - mergeAssets === false
+- 1 package.tar.gz (Post + Assets) - ```mergeAssets === true```
+- 2 packages.tar.gz (1 for Post + 1 for assets) - ```mergeAssets === false```
 
