@@ -8,7 +8,7 @@ var hooks = {
 		if (abe.config["abe-packagz"].active){
 			const documentPath = path.join(abe.config.root, abe.config.publish.url)
 			const fileName = path.basename(result.abe_meta.publish.abeUrl)
-			const packageDate = Math.floor(new Date() / 1000)
+			const packageDate = Math.floor(new Date())
 			const destPost = path.join(abe.config["abe-packagz"].destinationPath, abe.config["abe-packagz"].prefixHtml + packageDate + '.tar.gz')
 			const destImage = path.join(abe.config["abe-packagz"].destinationPath, abe.config["abe-packagz"].prefixImages + packageDate + '.tar.gz')
 			const template = result.abe_meta.template
