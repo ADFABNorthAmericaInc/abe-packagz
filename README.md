@@ -20,7 +20,7 @@ You can deactivate this plugin by setting "active" to false
 ## How it works
 
 ### On your Abe CMS
-Every time you publish a content, abe-packagz will create a tar.gz package in the destinationPath.
+Every time you publish a content, abe-packagz will create a tar.gz package in the ```destinationPath```.
 
 You can choose between 1 or 2 packages :
 
