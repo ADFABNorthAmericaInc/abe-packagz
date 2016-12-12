@@ -1,0 +1,18 @@
+{
+  "name": "abe-packagz",
+  "version": "1.0.0",
+  "description": "This plugin packages each published post in targz format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "abejs",
+    "tgz"
+  ],
+  "author": "Emmanuel Gonzalez",
+  "license": "ISC",
+  "dependencies": {
+    "tar-fs": "^1.14.0"
+  }
+}
