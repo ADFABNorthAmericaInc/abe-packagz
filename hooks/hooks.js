@@ -2,6 +2,7 @@
 var path = require('path')
 var tar = require('tar-fs')
 var fs = require('fs')
+var glob = require('glob')
 
 var hooks = {
 	afterPublish: function (result, postPath, abe) {
@@ -15,7 +16,6 @@ var hooks = {
 			const templateContent = abe.cmsTemplates.template.getTemplate(template)
 			const arImagesAbeTags = abe.cmsData.regex.getTagAbeWithType(templateContent,'image')
 
-
 			if (abe.config["abe-packagz"].mergeAssets === true) {
 				let arPostPath = []
 				if (arImagesAbeTags.length !== 0){
@@ -23,7 +23,12 @@ var hooks = {
 						function(elt) {
 							let key = abe.cmsData.regex.getAttr(elt,'key')
 							if (key !== '' && result[key] !== ''){
-								arPostPath.push(result[key])
+								let keyResult = result[key].replace(path.extname(result[key]), '*' + path.extname(result[key]))
+								if (keyResult.substring(0, 1) == "/") {
+									keyResult = keyResult.substr(1)
+								}
+								let g = new glob.sync(keyResult, {cwd:documentPath})
+								arPostPath = arPostPath.concat(g)
 							}					
 						}
 					)
@@ -39,7 +44,12 @@ var hooks = {
 						function(elt) {
 							let key = abe.cmsData.regex.getAttr(elt,'key')
 							if (key !== '' && result[key] !== ''){
-								arImagesPath.push(result[key])
+								let keyResult = result[key].replace(path.extname(result[key]), '*' + path.extname(result[key]))
+								if (keyResult.substring(0, 1) == "/") {
+									keyResult = keyResult.substr(1)
+								}
+								let g = new glob.sync(keyResult, {cwd:documentPath})
+								arImagesPath = arImagesPath.concat(g)
 							}					
 						}
 					)
