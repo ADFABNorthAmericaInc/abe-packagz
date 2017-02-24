@@ -13,7 +13,7 @@ var hooks = {
 			const destPost = path.join(abe.config["abe-packagz"].destinationPath, abe.config["abe-packagz"].prefixHtml + packageDate + '.tar.gz')
 			const destImage = path.join(abe.config["abe-packagz"].destinationPath, abe.config["abe-packagz"].prefixImages + packageDate + '.tar.gz')
 			const template = result.abe_meta.template
-			const templateContent = abe.cmsTemplates.template.getTemplate(template)
+			const templateContent = abe.cmsTemplates.template.getTemplate(template,result)
 			const arImagesAbeTags = abe.cmsData.regex.getTagAbeWithType(templateContent,'image')
 
 			if (abe.config["abe-packagz"].mergeAssets === true) {
