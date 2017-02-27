@@ -1,5 +1,5 @@
 # abe-packagz
-This abe plugin packages each published post in targz format. It will take car of images linked to the post (including thumbs version of a type="image" tag).
+This abe plugin packages each published post in targz format. It will take care of images linked to the post (including thumbs version of a type="image" tag).
 
 ##Introduction
 This plugin will create a tar.gz package for each post.
