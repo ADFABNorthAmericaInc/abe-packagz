@@ -32,10 +32,13 @@ var hooks = {
 							}					
 						}
 					)
-					arPostPath.push(fileName)
-					tar.pack(documentPath, {
-					  entries: arPostPath
-					}).pipe(fs.createWriteStream(destPost))	
+          arPostPath.push(fileName)
+          fs.stat(documentPath, function (err, stats) {
+            if(err) return console.log(err);
+            tar.pack(documentPath, {
+              entries: arPostPath
+            }).pipe(fs.createWriteStream(destPost))	
+          })
 				}
 			} else {
 				let arImagesPath = []
@@ -43,7 +46,7 @@ var hooks = {
 					arImagesAbeTags.forEach(
 						function(elt) {
 							let key = abe.cmsData.regex.getAttr(elt,'key')
-							if (key !== '' && result[key] && result[key] !== ''){
+							if (key !== '' && result[key] !== ''){
 								let keyResult = result[key].replace(path.extname(result[key]), '*' + path.extname(result[key]))
 								if (keyResult.substring(0, 1) == "/") {
 									keyResult = keyResult.substr(1)
@@ -54,15 +57,21 @@ var hooks = {
 						}
 					)
 					if (arImagesPath.length !== 0){
-						tar.pack(documentPath, {
-						  entries: arImagesPath 
-						}).pipe(fs.createWriteStream(destImage))
+            fs.stat(documentPath, function (err, stats) {
+              if(err) return console.log(err);
+              tar.pack(documentPath, {
+                entries: arImagesPath 
+              }).pipe(fs.createWriteStream(destImage))
+            })
 					}	
 				}
 
-				tar.pack(documentPath, {
-				  entries: [fileName] 
-				}).pipe(fs.createWriteStream(destPost))
+        fs.stat(destPost, function (err, stats) {
+          if(err) return console.log(err);
+          tar.pack(documentPath, {
+            entries: [fileName] 
+          }).pipe(fs.createWriteStream(destPost))
+        })
 			}
 		}			
 	}
