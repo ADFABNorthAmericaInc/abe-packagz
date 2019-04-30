@@ -55,7 +55,7 @@ var hooks = {
 						function(elt) {
 							let key = abe.cmsData.regex.getAttr(elt,'key')
 							if (key !== '' && result[key] !== ''){
-								console.log(result)
+								if(!result[key]) return;
 								let keyResult = result[key].replace(path.extname(result[key]), '*' + path.extname(result[key]))
 								if (keyResult.substring(0, 1) == "/") {
 									keyResult = keyResult.substr(1)
