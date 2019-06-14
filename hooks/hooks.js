@@ -36,7 +36,7 @@ var hooks = {
           fs.stat(documentPath, function (err, stats) {
             if(err) {
               fs.writeFile(err.path, '', function (err) {
-                if (err) throw err;
+                if (err) console.log(err);
                 tar.pack(documentPath, {
                   entries: arPostPath
                 }).pipe(fs.createWriteStream(destPost))	
@@ -68,7 +68,7 @@ var hooks = {
             fs.stat(documentPath, function (err, stats) {
               if(err) {
                 fs.writeFile(err.path, '', function (err) {
-                  if (err) throw err;
+                  if (err) console.log(err);
                   tar.pack(documentPath, {
                     entries: arImagesPath 
                   }).pipe(fs.createWriteStream(destImage))
@@ -85,7 +85,7 @@ var hooks = {
         fs.stat(destPost, function (err, stats) {
           if(err) {
             fs.writeFile(err.path, '', function (err) {
-              if (err) throw err;
+              if (err) console.log(err);
               tar.pack(documentPath, {
                 entries: [fileName] 
               }).pipe(fs.createWriteStream(destPost))
